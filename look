@@ -1,5 +1,6 @@
-#! /bin/sh
-find . -type f \( \
+#!/bin/sh
+
+find . \( \
     -name 'a*' -o \
     -name '*z' -o \
     -name 'z*a!' \
