@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 if [ -z "$HERO_ID" ]; then
@@ -12,4 +11,5 @@ curl -s https://01.gritlab.ax/assets/superhero/all.json \
   | select(.id == ($id | tonumber))
   | .connections.relatives
   | gsub("^\"|\"$"; "")
-' | tr '\n' '\\n'
+  | gsub("\n"; "\\n")
+'
