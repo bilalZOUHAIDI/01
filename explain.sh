@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Annabel Church"
 echo "699607"
-echo "blue Honda"
+echo "Blue Honda"
 echo "Mike Bostock"
 echo "Brian Boyer"
 echo "Matt Waite"
+echo ""
