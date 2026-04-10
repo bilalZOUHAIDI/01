@@ -5,5 +5,5 @@ jq -r --arg id "$HERO_ID" '
   .[] 
   | select(.id == ($id | tonumber)) 
   | .connections.relatives
-  | gsub("\\n"; "\n")
-'
+' | sed 's/\\n/\n/g'
+
