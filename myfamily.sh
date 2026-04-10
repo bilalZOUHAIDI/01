@@ -5,6 +5,6 @@ jq -r --arg id "$HERO_ID" '
   .[]
   | select(.id == ($id | tonumber))
   | .connections.relatives
-  | split("\\n")
-  | .[]
-'
+' | while IFS= read -r line; do
+    printf "%b\n" "$line"
+done
