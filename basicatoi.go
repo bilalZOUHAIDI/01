@@ -10,5 +10,4 @@ func BasicAtoi(s string) int {
 	} else {
 		return res
 	}
-
 }
