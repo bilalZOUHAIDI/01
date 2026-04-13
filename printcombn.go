@@ -47,4 +47,3 @@ func printComb(comb []int, n int) {
 		z01.PrintRune(' ')
 	}
 }
-

@@ -7,4 +7,3 @@ func PrintStr(s string) {
 		z01.PrintRune(c)
 	}
 }
-
