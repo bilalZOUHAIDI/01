@@ -1,4 +1,4 @@
-package main
+package piscine
 
 import "github.com/01-edu/z01"
 
@@ -48,6 +48,3 @@ func printComb(comb []int, n int) {
 	}
 }
 
-func main() {
-	PrintCombN(2)
-}
