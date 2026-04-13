@@ -1,6 +1,5 @@
 package piscine
 
-import "fmt"
 
 func UltimateDivMod(a *int, b *int) {
 	x := *a / *b
