@@ -1,9 +1,14 @@
 package piscine
 
 func BasicAtoi(s string) int {
-	res := 0
-	for _, char := range s {
-		res = res*10 + int(char-'0')
+	result := 0
+
+	for _, ch := range s {
+		if ch < '0' || ch > '9' {
+			return 0 // invalid character
+		}
+		result = result*10 + int(ch-'0')
 	}
-	return res
+
+	return result
 }
