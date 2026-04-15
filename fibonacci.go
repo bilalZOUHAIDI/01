@@ -1,7 +1,5 @@
 package piscine
 
-//dda
-
 func Fibonacci(index int) int {
 	if index < 0 {
 		return -1
