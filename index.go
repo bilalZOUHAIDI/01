@@ -1,5 +1,6 @@
 package piscine
 
+// DD
 func Index(s string, toFind string) int {
 	if len(toFind) == 0 {
 		return 0
