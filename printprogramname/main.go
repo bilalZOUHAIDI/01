@@ -1,5 +1,6 @@
 package main
 
+//osa
 import (
 	"os"
 	"path/filepath"
