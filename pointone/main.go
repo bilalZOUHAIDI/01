@@ -1,13 +1,7 @@
 package main
 
-import (
-	"fmt"
-
-	"piscine"
-)
+import "piscine"
 
 func main() {
-	var n int
-	piscine.PointOne(&n)
-	fmt.Println(n)
+	piscine.EightQueens()
 }
