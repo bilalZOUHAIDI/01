@@ -1,8 +1,6 @@
 package main
 
-import (
-	"os"
-)
+import "os"
 
 func isDigit(c byte) bool {
 	return c >= '0' && c <= '9'
@@ -32,23 +30,22 @@ func main() {
 		args = args[1:]
 	}
 
-	result := make([]byte, 0, len(args))
+	out := make([]byte, 0)
 
 	for _, arg := range args {
 		n, ok := atoi(arg)
 
 		if !ok || n < 1 || n > 26 {
-			result = append(result, ' ')
-			continue
-		}
-
-		if upper {
-			result = append(result, byte('A'+n-1))
+			out = append(out, ' ')
 		} else {
-			result = append(result, byte('a'+n-1))
+			if upper {
+				out = append(out, byte('A'+n-1))
+			} else {
+				out = append(out, byte('a'+n-1))
+			}
 		}
 	}
 
-	os.Stdout.Write(result)
+	os.Stdout.Write(out)
 	os.Stdout.Write([]byte("\n"))
 }
