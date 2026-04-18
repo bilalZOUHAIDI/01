@@ -1,6 +1,4 @@
-package main
 
-import "fmt"
 
 func AppendRange(start, end int) []int {
 	var tab []int
@@ -10,8 +8,4 @@ func AppendRange(start, end int) []int {
 	}
 
 	return tab
-}
-
-func main() {
-	fmt.Println(AppendRange(10, 2))
 }
