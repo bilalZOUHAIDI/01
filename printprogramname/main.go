@@ -1,6 +1,5 @@
 package main
 
-// ddsda
 import (
 	"os"
 
@@ -8,8 +7,18 @@ import (
 )
 
 func main() {
-	for _, c := range os.Args[0] {
-		z01.PrintRune(c)
+	name := os.Args[0]
+
+	start := 0
+	for i := 0; i < len(name); i++ {
+		if name[i] == '/' {
+			start = i + 1
+		}
 	}
+
+	for i := start; i < len(name); i++ {
+		z01.PrintRune(rune(name[i]))
+	}
+
 	z01.PrintRune('\n')
 }
