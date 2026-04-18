@@ -23,6 +23,7 @@ func atoi(s string) (int, bool) {
 
 func main() {
 	args := os.Args[1:]
+
 	if len(args) == 0 {
 		return
 	}
@@ -48,6 +49,7 @@ func main() {
 	}
 
 	if len(out) > 0 {
+		out = append(out, '\n')
 		os.Stdout.Write(out)
 	}
 }
