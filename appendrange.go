@@ -1,6 +1,6 @@
 package piscine
 
-// Dasdadf
+// Dd
 func AppendRange(start, end int) []int {
 	var tab []int
 
