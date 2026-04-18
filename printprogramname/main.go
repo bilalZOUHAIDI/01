@@ -16,8 +16,8 @@ func main() {
 		}
 	}
 
-	for i := start; i < len(name); i++ {
-		z01.PrintRune(rune(name[i]))
+	for _, r := range name[start:] {
+		z01.PrintRune(r)
 	}
 
 	z01.PrintRune('\n')
