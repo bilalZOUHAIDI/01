@@ -23,29 +23,31 @@ func atoi(s string) (int, bool) {
 
 func main() {
 	args := os.Args[1:]
-	upper := false
+	if len(args) == 0 {
+		return
+	}
 
-	if len(args) > 0 && args[0] == "--upper" {
+	upper := false
+	if args[0] == "--upper" {
 		upper = true
 		args = args[1:]
 	}
 
-	out := make([]byte, 0)
+	out := make([]byte, 0, len(args))
 
 	for _, arg := range args {
 		n, ok := atoi(arg)
 
 		if !ok || n < 1 || n > 26 {
 			out = append(out, ' ')
+		} else if upper {
+			out = append(out, byte('A'+n-1))
 		} else {
-			if upper {
-				out = append(out, byte('A'+n-1))
-			} else {
-				out = append(out, byte('a'+n-1))
-			}
+			out = append(out, byte('a'+n-1))
 		}
 	}
 
-	os.Stdout.Write(out)
-	os.Stdout.Write([]byte("\n"))
+	if len(out) > 0 {
+		os.Stdout.Write(out)
+	}
 }
