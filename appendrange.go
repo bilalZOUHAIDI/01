@@ -1,4 +1,4 @@
-
+package piscine
 
 func AppendRange(start, end int) []int {
 	var tab []int
