@@ -3,7 +3,6 @@ package piscine
 import "github.com/01-edu/z01"
 
 func PrintNbrBase(nbr int, base string) {
-
 	if len(base) < 2 {
 		z01.PrintRune('N')
 		z01.PrintRune('V')
