@@ -39,9 +39,8 @@ func main() {
 
 	exitCode := 0
 	files := os.Args[fileStartIdx:]
-	hasPrintedHeader := false
 
-	for _, filename := range files {
+	for i, filename := range files {
 		file, err := os.Open(filename)
 		if err != nil {
 			fmt.Printf("%v\n", err)
@@ -58,11 +57,10 @@ func main() {
 		}
 
 		if len(files) > 1 {
-			if hasPrintedHeader {
+			if i > 0 {
 				fmt.Printf("\n")
 			}
 			fmt.Printf("==> %s <==\n", filename)
-			hasPrintedHeader = true
 		}
 
 		size := stat.Size()
