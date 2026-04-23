@@ -17,7 +17,7 @@ func printError(msg string) {
 func printFile(name string) bool {
 	file, err := os.Open(name)
 	if err != nil {
-		printError("ERROR: " + err.Error())
+		printError("ERROR: open " + name + ": " + err.Error())
 		return false
 	}
 	defer file.Close()
@@ -31,26 +31,23 @@ func printFile(name string) bool {
 	return true
 }
 
-func printStdin() {
-	_, err := io.Copy(os.Stdout, os.Stdin)
-	if err != nil {
-		printError("ERROR: " + err.Error())
-		os.Exit(1)
-	}
-}
-
 func main() {
 	args := os.Args[1:]
 
 	if len(args) == 0 {
-		printStdin()
+		_, err := io.Copy(os.Stdout, os.Stdin)
+		if err != nil {
+			printError("ERROR: " + err.Error())
+			os.Exit(1)
+		}
 		return
 	}
 
 	exitCode := 0
 
 	for _, file := range args {
-		if !printFile(file) {
+		ok := printFile(file)
+		if !ok {
 			exitCode = 1
 		}
 	}
