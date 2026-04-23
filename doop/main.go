@@ -1,10 +1,6 @@
 package main
 
-import (
-	"os"
-
-	"github.com/01-edu/z01"
-)
+import "os"
 
 func main() {
 	if len(os.Args) != 4 {
@@ -20,6 +16,7 @@ func main() {
 	}
 
 	var result int
+
 	switch op {
 	case "+":
 		result = a + b
@@ -44,7 +41,7 @@ func main() {
 	}
 
 	PrintNbr(result)
-	z01.PrintRune('\n')
+	PrintStr("\n")
 }
 
 func Atoi(s string) (int, bool) {
@@ -67,9 +64,9 @@ func Atoi(s string) (int, bool) {
 		if s[i] < '0' || s[i] > '9' {
 			return 0, false
 		}
+
 		digit := int(s[i] - '0')
 
-		// overflow check
 		if result > (9223372036854775807-digit)/10 {
 			return 0, false
 		}
@@ -80,6 +77,10 @@ func Atoi(s string) (int, bool) {
 	return result * sign, true
 }
 
+func PrintStr(s string) {
+	os.Stdout.Write([]byte(s))
+}
+
 func PrintNbr(n int) {
 	if n == -9223372036854775808 {
 		PrintStr("-9223372036854775808")
@@ -87,7 +88,7 @@ func PrintNbr(n int) {
 	}
 
 	if n < 0 {
-		z01.PrintRune('-')
+		PrintStr("-")
 		n = -n
 	}
 
@@ -95,11 +96,6 @@ func PrintNbr(n int) {
 		PrintNbr(n / 10)
 	}
 
-	z01.PrintRune(rune(n%10 + '0'))
-}
-
-func PrintStr(s string) {
-	for _, c := range s {
-		z01.PrintRune(c)
-	}
+	digit := byte(n%10 + '0')
+	os.Stdout.Write([]byte{digit})
 }
