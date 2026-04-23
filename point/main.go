@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "github.com/01-edu/z01"
 
 type point struct {
 	x int
@@ -17,5 +17,28 @@ func main() {
 
 	setPoint(points)
 
-	fmt.Printf("x = %d, y = %d\n", points.x, points.y)
+	// "x = "
+	z01.PrintRune('x')
+	z01.PrintRune(' ')
+	z01.PrintRune('=')
+	z01.PrintRune(' ')
+
+	// print points.x (42)
+	z01.PrintRune(rune(points.x/10 + '0'))
+	z01.PrintRune(rune(points.x%10 + '0'))
+
+	// ", y = "
+	z01.PrintRune(',')
+	z01.PrintRune(' ')
+	z01.PrintRune('y')
+	z01.PrintRune(' ')
+	z01.PrintRune('=')
+	z01.PrintRune(' ')
+
+	// print points.y (21)
+	z01.PrintRune(rune(points.y/10 + '0'))
+	z01.PrintRune(rune(points.y%10 + '0'))
+
+	// newline
+	z01.PrintRune('\n')
 }
