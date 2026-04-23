@@ -19,23 +19,44 @@ func main() {
 
 	switch op {
 	case "+":
+		if (b > 0 && a > 9223372036854775807-b) ||
+			(b < 0 && a < -9223372036854775808-b) {
+			return
+		}
 		result = a + b
+
 	case "-":
+		if (b < 0 && a > 9223372036854775807+b) ||
+			(b > 0 && a < -9223372036854775808+b) {
+			return
+		}
 		result = a - b
+
 	case "*":
+		if a != 0 && b != 0 {
+			if a > 9223372036854775807/b || a < -9223372036854775808/b {
+				return
+			}
+		}
 		result = a * b
+
 	case "/":
 		if b == 0 {
 			PrintStr("No division by 0\n")
 			return
 		}
+		if a == -9223372036854775808 && b == -1 {
+			return
+		}
 		result = a / b
+
 	case "%":
 		if b == 0 {
 			PrintStr("No modulo by 0\n")
 			return
 		}
 		result = a % b
+
 	default:
 		return
 	}
@@ -96,6 +117,6 @@ func PrintNbr(n int) {
 		PrintNbr(n / 10)
 	}
 
-	digit := byte(n%10 + '0')
-	os.Stdout.Write([]byte{digit})
+	d := byte(n%10 + '0')
+	os.Stdout.Write([]byte{d})
 }
