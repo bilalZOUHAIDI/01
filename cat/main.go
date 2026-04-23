@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 
@@ -18,23 +19,15 @@ func printError(msg string) {
 func printFile(name string) bool {
 	file, err := os.Open(name)
 	if err != nil {
-		printError("ERROR: open " + name + ": " + err.Error())
+		fmt.Fprintln(os.Stderr, "ERROR:", err.Error())
 		return false
 	}
 	defer file.Close()
 
-	reader := bufio.NewReader(file)
-
-	for {
-		r, err := reader.ReadByte()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			printError("ERROR: " + err.Error())
-			return false
-		}
-		z01.PrintRune(rune(r))
+	_, err = io.Copy(os.Stdout, file)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "ERROR:", err.Error())
+		return false
 	}
 
 	return true
@@ -59,7 +52,6 @@ func printStdin() {
 func main() {
 	args := os.Args[1:]
 
-	// no args → stdin mode
 	if len(args) == 0 {
 		printStdin()
 		return
