@@ -1,58 +1,41 @@
 package main
 
 import (
-	"io"
+	"bufio"
 	"os"
 
 	"github.com/01-edu/z01"
 )
 
-func printError(msg string) {
-	for _, r := range msg {
+func printStr(s string) {
+	for _, r := range s {
 		z01.PrintRune(r)
 	}
 	z01.PrintRune('\n')
 }
 
-func printFile(name string) bool {
-	file, err := os.Open(name)
-	if err != nil {
-		// IMPORTANT: do NOT add "open name" yourself
-		printError("ERROR: " + err.Error())
-		return false
+func printFile(file *os.File) {
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		printStr(scanner.Text())
 	}
-	defer file.Close()
-
-	_, err = io.Copy(os.Stdout, file)
-	if err != nil {
-		printError("ERROR: " + err.Error())
-		return false
-	}
-
-	return true
 }
 
 func main() {
 	args := os.Args[1:]
 
 	if len(args) == 0 {
-		_, err := io.Copy(os.Stdout, os.Stdin)
-		if err != nil {
-			printError("ERROR: " + err.Error())
-			os.Exit(1)
-		}
+		printFile(os.Stdin)
 		return
 	}
 
-	exitCode := 0
-
-	for _, file := range args {
-		if !printFile(file) {
-			exitCode = 1
+	for _, filename := range args {
+		file, err := os.Open(filename)
+		if err != nil {
+			printStr("ERROR: open " + filename + ": no such file or directory")
+			os.Exit(1)
 		}
-	}
-
-	if exitCode == 1 {
-		os.Exit(1)
+		defer file.Close()
+		printFile(file)
 	}
 }
