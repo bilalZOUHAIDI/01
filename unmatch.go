@@ -8,7 +8,7 @@ func Unmatch(a []int) int {
 	}
 
 	for k, v := range counts {
-		if v == 1 {
+		if v%2 != 0 {
 			return k
 		}
 	}
